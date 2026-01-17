@@ -1,73 +1,152 @@
-# React + TypeScript + Vite
+# 🐢 Tortoise Supplier Interface
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A supplier-managed device leasing marketplace built for the Tortoise Product Manager Internship assignment.
 
-Currently, two official plugins are available:
+## 📋 Problem Statement
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Tortoise is a device leasing marketplace where employees can browse and lease devices. This project enables suppliers to directly manage their device listings, pricing, offers, and stock, ensuring employees always see up-to-date product information.
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### Supplier Portal
+- **Dashboard** - Overview with stats and rental trends
+- **Device Management** - Add, edit, delete device listings
+- **Pricing Control** - Update monthly rental prices
+- **Offer Management** - Create percentage or flat discounts with validity dates
+- **Stock Management** - Track and update inventory levels
+- **Availability Toggle** - Activate/deactivate device listings
 
-## Expanding the ESLint configuration
+### Employee App
+- **Browse Devices** - View all available devices with specs
+- **See Offers** - Applied discounts shown on prices
+- **Real-time Sync** - Auto-updates every 5 seconds
+- **Lease Flow** - Confirm device lease with stock reduction
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend**: React 18 + TypeScript
+- **Build Tool**: Vite
+- **Styling**: TailwindCSS
+- **Routing**: React Router DOM
+- **Forms**: React Hook Form + Zod validation
+- **Charts**: Recharts
+- **Icons**: Lucide React
+- **Data Storage**: localStorage (simulating backend API)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 📁 Project Structure
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+src/
+├── core/                          # Shared components
+│   └── components/
+│       ├── Layout.tsx             # Main layout wrapper
+│       ├── Sidebar.tsx            # Navigation sidebar
+│       └── ui.tsx                 # Reusable UI components
+│
+├── features/
+│   ├── dashboard/                 # Dashboard feature
+│   │   └── presentation/pages/
+│   │       └── DashboardPage.tsx  # Stats & rental trends
+│   │
+│   ├── devices/                   # Device management
+│   │   ├── data/repositories/
+│   │   │   └── MockDeviceRepository.ts  # Data layer with localStorage
+│   │   ├── domain/
+│   │   │   ├── entities/Device.ts       # Device & Offer interfaces
+│   │   │   └── repositories/DeviceRepository.ts
+│   │   └── presentation/
+│   │       ├── components/DeviceForm.tsx
+│   │       └── pages/
+│   │           ├── DeviceListPage.tsx   # Device listing
+│   │           └── DeviceEditPage.tsx   # Add/Edit device
+│   │
+│   ├── offers/                    # Offer management
+│   │   └── presentation/pages/
+│   │       └── OffersManagementPage.tsx
+│   │
+│   ├── stock/                     # Stock management
+│   │   └── presentation/pages/
+│   │       ├── StockManagementPage.tsx  # Per-device stock
+│   │       └── StockOverviewPage.tsx    # All devices stock view
+│   │
+│   └── employee/                  # Employee-facing app
+│       └── presentation/pages/
+│           └── EmployeeAppView.tsx      # Marketplace view
+│
+├── App.tsx                        # Route configuration
+├── main.tsx                       # App entry point
+└── index.css                      # Global styles
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 🚀 Getting Started
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/anand2026/turoise-Assingment.git
+
+# Navigate to project
+cd turoise-Assingment
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
 ```
+
+### Access the Application
+
+- **Supplier Portal**: http://localhost:5173
+- **Employee App**: http://localhost:5173/employee-app
+
+## 📱 Routes
+
+| Route | Description |
+|-------|-------------|
+| `/` | Dashboard with stats and trends |
+| `/devices` | Device listings with management options |
+| `/devices/new` | Add new device form |
+| `/devices/:id/edit` | Edit existing device |
+| `/devices/:id/offers` | Manage offers for a device |
+| `/devices/:id/stock` | Manage stock for a device |
+| `/stock` | Stock overview for all devices |
+| `/employee-app` | Employee marketplace view |
+
+## 🔄 Real-time Sync
+
+The application simulates real-time synchronization:
+- **Employee App** polls for updates every 5 seconds
+- **Dashboard** auto-refreshes stats and charts every 5 seconds
+- Changes made in Supplier Portal reflect immediately in Employee App
+
+## 📊 Mock Data
+
+The app comes pre-loaded with 3 sample devices:
+- iPhone 15 Pro (with 10% off offer)
+- Google Pixel 8
+- Samsung Galaxy S24 Ultra (with ₹500 off offer)
+
+## 🎯 Assignment Requirements Met
+
+| Requirement | Implementation |
+|-------------|----------------|
+| Upload device listings | ✅ `/devices/new` |
+| Update prices | ✅ `/devices/:id/edit` |
+| Update offers | ✅ `/devices/:id/offers` |
+| Update availability | ✅ Active/Inactive toggle |
+| Manage stock | ✅ `/devices/:id/stock` |
+| Sync to employee app | ✅ Real-time polling |
+
+## 👤 Author
+
+**Anand Singh**
+
+---
+
+Built with ❤️ for Tortoise
