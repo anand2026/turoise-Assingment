@@ -3,95 +3,10 @@ import type { DeviceRepository } from '../../domain/repositories/DeviceRepositor
 
 const STORAGE_KEY = 'tortoise_devices';
 
-// Seed data with actual product images
-const initialDevices: Device[] = [
-    {
-        id: '1',
-        name: 'iPhone 15 Pro',
-        brand: 'Apple',
-        model: '15 Pro',
-        image: 'https://store.storeimages.cdn-apple.com/4668/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=400&hei=400&fmt=jpeg&qlt=90',
-        price: 3500,
-        marketPrice: 134900,
-        stock: 25,
-        specifications: {
-            processor: 'A17 Pro',
-            ram: '8GB',
-            storage: '128GB',
-            display: '6.1" Super Retina XDR',
-            camera: '48MP Main',
-            battery: '3274 mAh'
-        },
-        offers: [
-            {
-                id: 'o1',
-                type: 'percentage',
-                value: 10,
-                description: '10% off for first-time users',
-                validFrom: '2026-01-01',
-                validTo: '2026-03-31',
-                isActive: true
-            }
-        ],
-        isActive: true,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    },
-    {
-        id: '2',
-        name: 'Google Pixel 8',
-        brand: 'Google',
-        model: 'Pixel 8',
-        image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=400&fit=crop',
-        price: 2200,
-        marketPrice: 75999,
-        stock: 12,
-        specifications: {
-            processor: 'Tensor G3',
-            ram: '8GB',
-            storage: '128GB',
-            display: '6.2" Actua OLED',
-            camera: '50MP Main',
-            battery: '4575 mAh'
-        },
-        offers: [],
-        isActive: true,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    },
-    {
-        id: '3',
-        name: 'Samsung Galaxy S24 Ultra',
-        brand: 'Samsung',
-        model: 'S24 Ultra',
-        image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400&h=400&fit=crop',
-        price: 4100,
-        marketPrice: 129999,
-        stock: 8,
-        specifications: {
-            processor: 'Snapdragon 8 Gen 3',
-            ram: '12GB',
-            storage: '256GB',
-            display: '6.8" Dynamic AMOLED 2X',
-            camera: '200MP Main',
-            battery: '5000 mAh'
-        },
-        offers: [
-            {
-                id: 'o2',
-                type: 'flat',
-                value: 500,
-                description: '₹500 off this month',
-                validFrom: '2026-01-01',
-                validTo: '2026-01-31',
-                isActive: true
-            }
-        ],
-        isActive: true,
-        createdAt: new Date().toISOString(),
-        updatedAt: new Date().toISOString(),
-    }
-];
+// No seed data - suppliers will add devices manually
+const initialDevices: Device[] = [];
+
+
 
 // Helper to load from localStorage or use seed data
 function loadDevices(): Device[] {
