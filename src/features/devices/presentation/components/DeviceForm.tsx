@@ -2,14 +2,24 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { Button, Card } from '../../../../core/components/ui';
-import type { Device } from '../../domain/entities/Device';
+import type { Device, DeviceCategory } from '../../domain/entities/Device';
 import { Loader2, Save, X } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+
+const deviceCategories: { value: DeviceCategory; label: string }[] = [
+    { value: 'phone', label: '📱 Phone' },
+    { value: 'laptop', label: '💻 Laptop' },
+    { value: 'tablet', label: '📲 Tablet' },
+    { value: 'smartwatch', label: '⌚ Smartwatch' },
+    { value: 'headphones', label: '🎧 Headphones' },
+    { value: 'other', label: '📦 Other' },
+];
 
 const deviceSchema = z.object({
     name: z.string().min(2, 'Name must be at least 2 characters'),
     brand: z.string().min(2, 'Brand is required'),
     model: z.string().min(1, 'Model is required'),
+    category: z.enum(['phone', 'laptop', 'tablet', 'smartwatch', 'headphones', 'other']),
     image: z.string().url('Must be a valid URL'),
     price: z.coerce.number().min(0, 'Price must be positive'),
     marketPrice: z.coerce.number().min(0, 'Market price must be positive'),
@@ -42,6 +52,7 @@ export function DeviceForm({ initialData, onSubmit, isSubmitting }: DeviceFormPr
         } : {
             isActive: true,
             stock: 0,
+            category: 'phone',
             specifications: {
                 processor: '',
                 ram: '',
@@ -63,7 +74,22 @@ export function DeviceForm({ initialData, onSubmit, isSubmitting }: DeviceFormPr
                         <Input label="Device Name" error={errors.name?.message} {...register('name')} placeholder="e.g. iPhone 15 Pro" />
                         <Input label="Brand" error={errors.brand?.message} {...register('brand')} placeholder="e.g. Apple" />
                         <Input label="Model" error={errors.model?.message} {...register('model')} placeholder="e.g. 15 Pro" />
-                        <Input label="Image URL" error={errors.image?.message} {...register('image')} placeholder="https://..." />
+
+                        {/* Category Dropdown */}
+                        <div>
+                            <label className="block text-sm font-medium text-gray-700 mb-1">Device Category</label>
+                            <select
+                                {...register('category')}
+                                className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm text-gray-900 focus:outline-none focus:ring-2 focus:ring-tortoise-500"
+                            >
+                                {deviceCategories.map(cat => (
+                                    <option key={cat.value} value={cat.value}>{cat.label}</option>
+                                ))}
+                            </select>
+                            {errors.category && <p className="mt-1 text-xs text-red-500">{errors.category.message}</p>}
+                        </div>
+
+                        <Input label="Image URL" error={errors.image?.message} {...register('image')} placeholder="https://..." className="md:col-span-2" />
                     </div>
                 </Card>
 

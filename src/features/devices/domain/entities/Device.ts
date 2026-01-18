@@ -8,11 +8,14 @@ export interface Offer {
     isActive: boolean;
 }
 
+export type DeviceCategory = 'phone' | 'laptop' | 'tablet' | 'smartwatch' | 'headphones' | 'other';
+
 export interface Device {
     id: string;
     name: string;
     brand: string;
     model: string;
+    category: DeviceCategory;
     image: string; // URL
     price: number; // Monthly rental price
     marketPrice: number; // Original market price
