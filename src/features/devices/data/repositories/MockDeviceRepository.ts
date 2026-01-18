@@ -3,14 +3,14 @@ import type { DeviceRepository } from '../../domain/repositories/DeviceRepositor
 
 const STORAGE_KEY = 'tortoise_devices';
 
-// Seed data - Using reliable image CDN
+// Seed data
 const initialDevices: Device[] = [
     {
         id: '1',
         name: 'iPhone 15 Pro',
         brand: 'Apple',
         model: '15 Pro',
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15-pro.jpg',
+        image: 'https://picsum.photos/seed/iphone15/400/300',
         price: 3500,
         marketPrice: 134900,
         stock: 25,
@@ -42,7 +42,7 @@ const initialDevices: Device[] = [
         name: 'Google Pixel 8',
         brand: 'Google',
         model: 'Pixel 8',
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-8.jpg',
+        image: 'https://picsum.photos/seed/pixel8/400/300',
         price: 2200,
         marketPrice: 75999,
         stock: 12,
@@ -64,7 +64,7 @@ const initialDevices: Device[] = [
         name: 'Samsung Galaxy S24 Ultra',
         brand: 'Samsung',
         model: 'S24 Ultra',
-        image: 'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s24-ultra-5g.jpg',
+        image: 'https://picsum.photos/seed/samsung24/400/300',
         price: 4100,
         marketPrice: 129999,
         stock: 8,
