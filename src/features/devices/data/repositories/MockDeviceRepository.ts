@@ -3,14 +3,14 @@ import type { DeviceRepository } from '../../domain/repositories/DeviceRepositor
 
 const STORAGE_KEY = 'tortoise_devices';
 
-// Seed data
+// Seed data - Using reliable image CDN
 const initialDevices: Device[] = [
     {
         id: '1',
         name: 'iPhone 15 Pro',
         brand: 'Apple',
         model: '15 Pro',
-        image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=400&hei=400&fmt=jpeg&qlt=95',
+        image: 'https://fdn2.gsmarena.com/vv/bigpic/apple-iphone-15-pro.jpg',
         price: 3500,
         marketPrice: 134900,
         stock: 25,
@@ -42,7 +42,7 @@ const initialDevices: Device[] = [
         name: 'Google Pixel 8',
         brand: 'Google',
         model: 'Pixel 8',
-        image: 'https://lh3.googleusercontent.com/wdgXRr4bc8JOKjn2IlMTYvMqGsJ_vxYDrKVcEQ0cXVLQGt7FLvbXJKqMY6Ql1WfQJcmfPz0OYw6TQ7xIqDVnNBmGNpOL25dW=rw-e365-w400',
+        image: 'https://fdn2.gsmarena.com/vv/bigpic/google-pixel-8.jpg',
         price: 2200,
         marketPrice: 75999,
         stock: 12,
@@ -64,7 +64,7 @@ const initialDevices: Device[] = [
         name: 'Samsung Galaxy S24 Ultra',
         brand: 'Samsung',
         model: 'S24 Ultra',
-        image: 'https://images.samsung.com/is/image/samsung/p6pim/in/2401/gallery/in-galaxy-s24-ultra-s928-sm-s928bztqins-thumb-539573637?$400_400_PNG$',
+        image: 'https://fdn2.gsmarena.com/vv/bigpic/samsung-galaxy-s24-ultra-5g.jpg',
         price: 4100,
         marketPrice: 129999,
         stock: 8,
