@@ -26,7 +26,7 @@ export function StockOverviewPage() {
     // Calculate stats
     const totalDevices = devices.length;
     const totalStock = devices.reduce((sum, d) => sum + d.stock, 0);
-    const lowStockDevices = devices.filter(d => d.stock > 0 && d.stock < 5).length;
+    const lowStockDevices = devices.filter(d => d.stock > 0 && d.stock < 10).length;
     const outOfStockDevices = devices.filter(d => d.stock === 0).length;
 
     // Filter and sort
@@ -35,7 +35,7 @@ export function StockOverviewPage() {
             const matchesSearch = d.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
                 d.brand.toLowerCase().includes(searchQuery.toLowerCase());
 
-            if (filterStock === 'low') return matchesSearch && d.stock > 0 && d.stock < 5;
+            if (filterStock === 'low') return matchesSearch && d.stock > 0 && d.stock < 10;
             if (filterStock === 'out') return matchesSearch && d.stock === 0;
             return matchesSearch;
         })
@@ -209,8 +209,8 @@ export function StockOverviewPage() {
                                             <div className="w-24 h-2 bg-gray-200 rounded-full overflow-hidden">
                                                 <div
                                                     className={`h-full rounded-full transition-all ${device.stock === 0 ? 'bg-red-500' :
-                                                            device.stock < 5 ? 'bg-amber-500' :
-                                                                device.stock < 10 ? 'bg-yellow-500' : 'bg-green-500'
+                                                        device.stock < 5 ? 'bg-amber-500' :
+                                                            device.stock < 10 ? 'bg-yellow-500' : 'bg-green-500'
                                                         }`}
                                                     style={{ width: `${Math.min(100, (device.stock / 30) * 100)}%` }}
                                                 ></div>
@@ -221,7 +221,7 @@ export function StockOverviewPage() {
                                     <td className="py-3 px-4 text-center">
                                         {device.stock === 0 ? (
                                             <Badge variant="error">Out of Stock</Badge>
-                                        ) : device.stock < 5 ? (
+                                        ) : device.stock < 10 ? (
                                             <Badge variant="warning">Low Stock</Badge>
                                         ) : (
                                             <Badge variant="success">In Stock</Badge>
